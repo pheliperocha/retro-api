@@ -1,0 +1,63 @@
+{
+  "swagger": "2.0",
+  "title" : "Retro API Documentation",
+  "description" : "A tool that helps to perform the Retrospective of Sprints, organizing and bringing better results.",
+  "license": {
+    "name": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+  },
+  "version": "1.0.0",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Retro",
+      "description": "API for Retro Endpoints"
+    }
+  ],
+  "schemes": ["http","https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths" :{
+    "/":{
+      "get":{
+        "tags": ["Retro"],
+        "summary": "Root Endpoint",
+        "description" : "",
+        "parameters":[],
+        "produces" : ["application/json"],
+        "responses":{
+          "200":{
+            "description" : "Basic Information about the API",
+            "schema": {
+              "$ref" : "#definitions/ApiInfo"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions":{
+    "ApiInfo":{
+      "properties":{
+        "app": {
+          "type" : "string"
+        },
+        "version": {
+          "type" : "string"
+        },
+        "description": {
+          "type" : "string"
+        },
+        "developer": {
+          "type" : "string"
+        },
+        "website": {
+          "type" : "string"
+        },
+        "email": {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
