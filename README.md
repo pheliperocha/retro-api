@@ -29,6 +29,12 @@ We also use [Conventional Commits](http://conventionalcommits.org/) and [Standar
 | npm run lint | Execute a lint using eslint. |
 | npm run release | Run Standard-Version CLI to make the changelog and bump version. |
 
+## ERD
+
+The ERD are built using [MySQL Workbench 8.0](https://dev.mysql.com/downloads/workbench/). The files can be found at `/docs` directory.
+
+![Database ERD](docs/erd.svg)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
