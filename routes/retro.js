@@ -1,8 +1,10 @@
 const router = require('express').Router();
+
 const controllerMock = require('../mocks/controllerMock');
+const retroController = require('../controllers/retro.controller');
 
 // GET
-router.get('/:id', controllerMock);
+router.get('/:id', retroController.get);
 router.get('/pincode/:pin', controllerMock);
 router.get('/:id/list', controllerMock);
 router.get('/:id/card', controllerMock);
