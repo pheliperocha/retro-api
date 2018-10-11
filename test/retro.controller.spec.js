@@ -10,12 +10,21 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('RetroController', function() {
-    it('should return a retro object', function() {
+    it('should return a retro object by id', function() {
         chai.request(server)
             .get('/retro/1')
             .end((err, res) => {
                 expect(res.status).to.be.equal(200);
-                expect(res.body).to.deep.equal(retroMock);
+                expect(res.body).to.deep.equal(retroMock[0]);
+            });
+    });
+
+    it('should return a retro object by PIN code', function() {
+        chai.request(server)
+            .get('/retro/pincode/9876543')
+            .end((err, res) => {
+                expect(res.status).to.be.equal(200);
+                expect(res.body).to.deep.equal(retroMock[1]);
             });
     });
 });
