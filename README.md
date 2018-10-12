@@ -27,6 +27,8 @@ We also use [Conventional Commits](http://conventionalcommits.org/) and [Standar
 |-------:|--------|
 | npm start | Serve API with express DEBUG and Nodemon to live-reload on changes. |
 | npm run lint | Execute a lint using eslint. |
+| npm run test | Execute unit tests via Mocha. |
+| npm run test:coverage | Execute unit tests outputting a code coverage report on `/coverage` folder. |
 | npm run release | Run Standard-Version CLI to make the changelog and bump version. |
 
 ## ERD
