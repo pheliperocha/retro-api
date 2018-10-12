@@ -115,15 +115,15 @@ describe('RetroController', function() {
 
     describe('POST', function() {
         it('SHOULD create a new Retro', function() {
-            const titleMock = "New Retrospective Title";
-            const contextMock = "New Retrospective Context";
+            const titleMock = 'New Retrospective Title';
+            const contextMock = 'New Retrospective Context';
 
             chai.request(server)
                 .post('/retro/')
                 .send({
-                    "title": titleMock,
-                    "context": contextMock,
-                    "image": null
+                    'title': titleMock,
+                    'context': contextMock,
+                    'image': null
                 })
                 .end((err, res) => {
                     expect(res.status).to.be.equal(201);
@@ -140,7 +140,7 @@ describe('RetroController', function() {
             chai.request(server)
                 .post('/retro/1/member')
                 .send({
-                    "memberId": 1
+                    'memberId': 1
                 })
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
@@ -153,7 +153,7 @@ describe('RetroController', function() {
             chai.request(server)
                 .post('/retro/5/member')
                 .send({
-                    "memberId": 1
+                    'memberId': 1
                 })
                 .end((err, res) => {
                     expect(res.status).to.be.equal(404);
@@ -166,7 +166,7 @@ describe('RetroController', function() {
             chai.request(server)
                 .post('/retro/1/member')
                 .send({
-                    "memberId": 5
+                    'memberId': 5
                 })
                 .end((err, res) => {
                     expect(res.status).to.be.equal(404);
