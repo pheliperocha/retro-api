@@ -6,7 +6,7 @@ const retroController = require('../controllers/retro.controller');
 // GET
 router.get('/:id', retroController.get);
 router.get('/pincode/:pin', retroController.getByPin);
-router.get('/:id/list', controllerMock);
+router.get('/:id/lists', retroController.getLists);
 router.get('/:id/card', controllerMock);
 router.get('/:id/user', controllerMock);
 
