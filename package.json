@@ -6,15 +6,18 @@
     "lint": "eslint .",
     "test": "mocha",
     "test:coverage": "nyc --reporter=html npm test",
+    "codacy": "nyc report --reporter=text-lcov | codacy-coverage --token <token> --username pheliperocha --projectName retro-api --commit <commit>",
     "release": "standard-version"
   },
   "dependencies": {
     "chai-http": "4.2.0",
+    "codacy-coverage": "3.1.0",
     "cookie-parser": "~1.4.3",
     "cors": "2.8.4",
     "debug": "2.6.9",
     "express": "~4.16.0",
     "http-errors": "1.7.1",
+    "mocha-lcov-reporter": "1.3.0",
     "morgan": "~1.9.0",
     "swagger-ui-express": "4.0.1"
   },

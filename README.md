@@ -9,9 +9,12 @@
 <p align="center">
     <a href="https://travis-ci.com/pheliperocha/retro-api"><img src="https://travis-ci.com/pheliperocha/retro-api.svg?branch=master"></a>
     <a href="https://app.codacy.com/app/pheliperocha/retro-api?utm_source=github.com&utm_medium=referral&utm_content=pheliperocha/retro-api&utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/f488e093c4bd4ccba8521f35e5cfa1dc" alt="Codacy Badge"></a>
+    <a href="https://www.codacy.com/app/pheliperocha/retro-api?utm_source=github.com&utm_medium=referral&utm_content=pheliperocha/retro-api&utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/73bb0be2ca8d4fd489f54a10e2fa900c" alt="Codacy Badge"></a>    
     <a href="https://github.com/pheliperocha/retro-api/issues"><img src="https://img.shields.io/github/issues/pheliperocha/retro-api.svg"></a>
+    <br>
     <a href="https://david-dm.org/pheliperocha/retro-api" title="dependencies status"><img src="https://david-dm.org/pheliperocha/retro-api/status.svg"/></a>
     <a href="https://david-dm.org/pheliperocha/retro-api?type=dev" title="devDependencies status"><img src="https://david-dm.org/pheliperocha/retro-api/dev-status.svg"/></a>
+    <br>
     <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg"></a>
     <a href="LICENSE.md"><img src="https://img.shields.io/packagist/l/doctrine/orm.svg"></a>
 </p>
@@ -20,7 +23,7 @@
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/pheliperocha/retro).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/pheliperocha/retro-api/releases).
 
 We also use [Conventional Commits](http://conventionalcommits.org/) and [Standard Version](https://github.com/conventional-changelog/standard-version), to automatic versioning and [CHANGELOG](CHANGELOG.md) generation
 
