@@ -9,6 +9,7 @@ const expect = chai.expect;
 const retroMock = require('../mocks/retro.mock');
 const listsMock = require('../mocks/list.mock');
 const cardsMock = require('../mocks/card.mock');
+const usersMock = require('../mocks/user.mock');
 
 chai.use(chaiHttp);
 
@@ -49,6 +50,15 @@ describe('RetroController', function() {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.have.lengthOf(2);
                     expect(res.body).to.deep.equal(cardsMock);
+                });
+        });
+
+        it('should return the facilitador of the retro', function() {
+            chai.request(server)
+                .get('/retro/1/user')
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(200);
+                    expect(res.body).to.deep.equal(usersMock[0]);
                 });
         });
     });

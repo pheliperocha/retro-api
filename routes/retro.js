@@ -8,7 +8,7 @@ router.get('/:id', retroController.get);
 router.get('/pincode/:pin', retroController.getByPin);
 router.get('/:id/lists', retroController.getLists);
 router.get('/:id/cards', retroController.getCards);
-router.get('/:id/user', controllerMock);
+router.get('/:id/user', retroController.getFacilitator);
 
 // POST
 router.post('/', controllerMock);
