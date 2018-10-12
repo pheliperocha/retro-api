@@ -45,3 +45,11 @@ exports.create = function (req, res) {
 
     return res.status(201).send(obj);
 };
+
+exports.addMember = function (req, res, next) {
+    let memberId = req.body.memberId;
+    let obj = usersMock.find(user => user.id === parseInt(memberId));
+    res.set('Location', 'http://localhost:3000/retro/1/members/' + memberId);
+    if (retroMock[req.params.id] && obj) res.status(200).send(obj);
+    else return next(createError(404));
+};

@@ -135,5 +135,44 @@ describe('RetroController', function() {
                     expect(res.header.location).to.not.be.undefined;
                 });
         });
+
+        it('SHOULD add a new member on the Retro', function() {
+            chai.request(server)
+                .post('/retro/1/member')
+                .send({
+                    "memberId": 1
+                })
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(200);
+                    expect(res.body).to.deep.equal(usersMock[0]);
+                    expect(res.header.location).to.not.be.undefined;
+                });
+        });
+
+        it('SHOULD NOT add a new member on a nonexistent Retro', function() {
+            chai.request(server)
+                .post('/retro/5/member')
+                .send({
+                    "memberId": 1
+                })
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(404);
+                    expect(res.body.errors).to.have.lengthOf(1);
+                    expect(res.body.errors[0].message).to.be.equal('Not Found');
+                });
+        });
+
+        it('SHOULD NOT add a nonexistent user as a new member of a Retro', function() {
+            chai.request(server)
+                .post('/retro/1/member')
+                .send({
+                    "memberId": 5
+                })
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(404);
+                    expect(res.body.errors).to.have.lengthOf(1);
+                    expect(res.body.errors[0].message).to.be.equal('Not Found');
+                });
+        });
     });
 });

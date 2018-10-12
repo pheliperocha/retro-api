@@ -12,7 +12,7 @@ router.get('/:id/user', retroController.getFacilitator);
 
 // POST
 router.post('/', retroController.create);
-router.post('/member', controllerMock);
+router.post('/:id/member', retroController.addMember);
 
 // PATCH
 router.patch('/:id', controllerMock);
