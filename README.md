@@ -33,7 +33,7 @@ We also use [Conventional Commits](http://conventionalcommits.org/) and [Standar
 
 The ERD are built using [MySQL Workbench 8.0](https://dev.mysql.com/downloads/workbench/). The files can be found at `/docs` directory.
 
-![Database ERD](docs/erd.svg)
+![Database ERD](docs/erd.png)
 
 ## License
 
