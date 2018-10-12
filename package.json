@@ -4,8 +4,8 @@
   "scripts": {
     "start": "set DEBUG=* & nodemon ./bin/www",
     "lint": "eslint .",
-    "release": "standard-version",
-    "test": "mocha"
+    "test": "mocha",
+    "release": "standard-version"
   },
   "dependencies": {
     "chai-http": "4.2.0",
