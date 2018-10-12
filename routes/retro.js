@@ -11,7 +11,7 @@ router.get('/:id/cards', retroController.getCards);
 router.get('/:id/user', retroController.getFacilitator);
 
 // POST
-router.post('/', controllerMock);
+router.post('/', retroController.create);
 router.post('/member', controllerMock);
 
 // PATCH

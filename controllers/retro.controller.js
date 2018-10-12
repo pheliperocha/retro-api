@@ -34,3 +34,14 @@ exports.getFacilitator = function(req, res, next) {
     if (retroMock[req.params.id]) res.status(200).send(obj);
     else return next(createError(404));
 };
+
+exports.create = function (req, res) {
+    let obj = req.body;
+    obj.id = Math.floor(Math.random()*100);
+    obj.userid = Math.floor(Math.random()*100);
+    obj.status = true;
+
+    res.set('Location', 'http://localhost:3000/retro/' + obj.id);
+
+    return res.status(201).send(obj);
+};
