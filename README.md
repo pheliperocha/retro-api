@@ -15,6 +15,8 @@
 
 ---
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f488e093c4bd4ccba8521f35e5cfa1dc)](https://app.codacy.com/app/pheliperocha/retro-api?utm_source=github.com&utm_medium=referral&utm_content=pheliperocha/retro-api&utm_campaign=Badge_Grade_Dashboard)
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/pheliperocha/retro).
