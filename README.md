@@ -8,6 +8,7 @@
 
 <p align="center">
     <a href="https://travis-ci.com/pheliperocha/retro-api"><img src="https://travis-ci.com/pheliperocha/retro-api.svg?branch=master"></a>
+    <a href="https://app.codacy.com/app/pheliperocha/retro-api?utm_source=github.com&utm_medium=referral&utm_content=pheliperocha/retro-api&utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/f488e093c4bd4ccba8521f35e5cfa1dc" alt="Codacy Badge"></a>
     <a href="https://github.com/pheliperocha/retro-api/issues"><img src="https://img.shields.io/github/issues/pheliperocha/retro-api.svg"></a>
     <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg"></a>
     <a href="LICENSE.md"><img src="https://img.shields.io/packagist/l/doctrine/orm.svg"></a>
