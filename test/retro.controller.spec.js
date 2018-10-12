@@ -30,7 +30,7 @@ describe('RetroController', function() {
                 });
         });
 
-        it.only('should return a array of list from a retro', function() {
+        it('should return a array of list from a retro', function() {
             chai.request(server)
                 .get('/retro/1/lists')
                 .end((err, res) => {

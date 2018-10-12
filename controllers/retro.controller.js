@@ -2,7 +2,7 @@ const retroMock = require('../mocks/retro.mock');
 const listsMock = require('../mocks/list.mock');
 
 exports.get = function(req, res) {
-    let obj = retroMock.find(retro => retro.id == req.params.id);
+    let obj = retroMock.find(retro => retro.id === parseInt(req.params.id));
     return res.status(200).send(obj);
 };
 
