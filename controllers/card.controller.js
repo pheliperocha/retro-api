@@ -42,3 +42,9 @@ exports.vote = function (req, res, next) {
     if (cardObj) res.status(204).send();
     else return next(createError(404));
 };
+
+exports.unvote = function (req, res, next) {
+    let cardObj = cardsMock.find(card => card.id === parseInt(req.params.id));
+    if (cardObj) res.status(204).send();
+    else return next(createError(404));
+};

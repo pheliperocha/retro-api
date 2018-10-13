@@ -101,5 +101,13 @@ describe('CardController', function() {
                 .del('/cards/5')
                 .end(notFoundAssertion);
         });
+
+        it('SHOULD return success on unvoting a card', function() {
+            chai.request(server)
+                .del('/cards/1/vote')
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(204);
+                });
+        });
     });
 });

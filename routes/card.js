@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const controllerMock = require('../mocks/controllerMock');
 const cardController = require('../controllers/card.controller');
 
 // GET
@@ -14,6 +13,6 @@ router.patch('/:id', cardController.update);
 
 // DELETE
 router.delete('/:id', cardController.delete);
-router.delete('/:cardId/user/:userId', controllerMock);
+router.delete('/:id/vote', cardController.unvote);
 
 module.exports = router;
