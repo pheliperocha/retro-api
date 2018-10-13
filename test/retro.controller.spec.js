@@ -177,5 +177,18 @@ describe('RetroController', function() {
                 })
                 .end(notFoundAssertion);
         });
+
+        it('SHOULD return success on updating the positions of the lists from a Retro', function() {
+            chai.request(server)
+                .patch('/retro/1/lists/positions')
+                .send({
+                    'listid': 1,
+                    'position': 1,
+                })
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(204);
+                    expect(res.header.location).to.not.be.undefined;
+                });
+        });
     });
 });

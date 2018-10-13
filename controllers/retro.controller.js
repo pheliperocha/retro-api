@@ -62,3 +62,12 @@ exports.update = function (req, res, next) {
     if (obj) res.status(204).send();
     else return next(createError(404));
 };
+
+exports.sortLists = function (req, res, next) {
+    let obj = retroMock.find(retro => retro.id === parseInt(req.params.id));
+
+    res.set('Location', 'http://localhost:3000/retro/' + req.params.id + '/lists');
+
+    if (obj) res.status(204).send();
+    else return next(createError(404));
+};
