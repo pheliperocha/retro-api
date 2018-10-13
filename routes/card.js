@@ -3,12 +3,11 @@ const controllerMock = require('../mocks/controllerMock');
 const cardController = require('../controllers/card.controller');
 
 // GET
-router.get('/', controllerMock);
 router.get('/:id', cardController.get);
 
 // POST
 router.post('/', cardController.create);
-router.post('/:id/vote', controllerMock);
+router.post('/:id/vote', cardController.vote);
 
 // PATCH
 router.patch('/:id', cardController.update);

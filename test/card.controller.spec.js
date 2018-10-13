@@ -53,6 +53,15 @@ describe('CardController', function() {
                     expect(res.header.location).to.not.be.undefined;
                 });
         });
+
+        it('SHOULD return success on voting in a card', function() {
+            chai.request(server)
+                .post('/cards/1/vote')
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(204);
+                    expect(res.header.location).to.not.be.undefined;
+                });
+        });
     });
 
     describe('PATCH', function() {
