@@ -18,3 +18,18 @@ exports.create = function (req, res) {
 
     res.status(201).send(obj);
 };
+
+exports.update = function (req, res, next) {
+    let obj = listsMock.find(list => list.id === parseInt(req.params.id));
+
+    res.set('Location', 'http://localhost:3000/lists/' + req.params.id);
+
+    if (obj) res.status(204).send();
+    else return next(createError(404));
+};
+
+exports.delete = function (req, res, next) {
+    let listObj = listsMock.find(list => list.id === parseInt(req.params.id));
+    if (listObj) res.status(204).send();
+    else return next(createError(404));
+};

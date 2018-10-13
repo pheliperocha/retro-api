@@ -51,4 +51,43 @@ describe('ListController', function() {
                 });
         });
     });
+
+    describe('PATCH', function() {
+        it('SHOULD return success on update a List', function() {
+            chai.request(server)
+                .patch('/lists/1')
+                .send({
+                    'title': 'New List Title',
+                })
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(204);
+                    expect(res.header.location).to.not.be.undefined;
+                });
+        });
+
+        it('SHOULD NOT return success on update a nonexistent List', function() {
+            chai.request(server)
+                .patch('/lists/5')
+                .send({
+                    'title': 'New List Title',
+                })
+                .end(notFoundAssertion);
+        });
+    });
+
+    describe('DELETE', function() {
+        it('SHOULD return success on deleting a list', function() {
+            chai.request(server)
+                .del('/lists/1')
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(204);
+                });
+        });
+
+        it('SHOULD NOT return success on deleting a nonexistent list', function() {
+            chai.request(server)
+                .del('/lists/5')
+                .end(notFoundAssertion);
+        });
+    });
 });

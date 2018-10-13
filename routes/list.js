@@ -1,6 +1,5 @@
 const router = require('express').Router();
 
-const controllerMock = require('../mocks/controllerMock');
 const listController = require('../controllers/list.controller');
 
 // GET
@@ -10,9 +9,9 @@ router.get('/:id', listController.get);
 router.post('/', listController.create);
 
 // PATCH
-router.patch('/:id', controllerMock);
+router.patch('/:id', listController.update);
 
 // DELETE
-router.delete('/:id', controllerMock);
+router.delete('/:id', listController.delete);
 
 module.exports = router;
