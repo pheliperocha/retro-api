@@ -1,6 +1,5 @@
 const router = require('express').Router();
 
-const controllerMock = require('../mocks/controllerMock');
 const retroController = require('../controllers/retro.controller');
 
 // GET

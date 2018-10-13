@@ -1,3 +1,5 @@
+require('dotenv-safe').config();
+
 const express = require('express'),
     createError = require('http-errors'),
     errorHandler = require('./errorHandler'),
