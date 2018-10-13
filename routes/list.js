@@ -7,7 +7,7 @@ const listController = require('../controllers/list.controller');
 router.get('/:id', listController.get);
 
 // POST
-router.post('/', controllerMock);
+router.post('/', listController.create);
 
 // PATCH
 router.patch('/:id', controllerMock);

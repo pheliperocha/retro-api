@@ -28,4 +28,27 @@ describe('ListController', function() {
                 .end(notFoundAssertion);
         });
     });
+
+    describe('POST', function() {
+        it('SHOULD create a new list', function() {
+            const titleMock = 'New List Title';
+            const retroIdMock = 1;
+
+            chai.request(server)
+                .post('/lists/')
+                .send({
+                    'title': titleMock,
+                    'retroid': retroIdMock
+                })
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(201);
+                    expect(res.body.title).to.be.equal(titleMock);
+                    expect(res.body.retroid).to.be.equal(retroIdMock);
+                    expect(res.body.id).to.not.be.undefined;
+                    expect(res.body.userid).to.not.be.undefined;
+                    expect(res.body.status).to.be.true;
+                    expect(res.header.location).to.not.be.undefined;
+                });
+        });
+    });
 });
