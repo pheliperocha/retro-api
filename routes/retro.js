@@ -15,7 +15,7 @@ router.post('/', retroController.create);
 router.post('/:id/member', retroController.addMember);
 
 // PATCH
-router.patch('/:id', controllerMock);
+router.patch('/:id', retroController.update);
 router.patch('/:id/list/sort', controllerMock);
 router.patch('/:id/card/sort', controllerMock);
 

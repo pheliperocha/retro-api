@@ -43,7 +43,7 @@ exports.create = function (req, res) {
 
     res.set('Location', 'http://localhost:3000/retro/' + obj.id);
 
-    return res.status(201).send(obj);
+    res.status(201).send(obj);
 };
 
 exports.addMember = function (req, res, next) {
@@ -51,5 +51,14 @@ exports.addMember = function (req, res, next) {
     let obj = usersMock.find(user => user.id === parseInt(memberId));
     res.set('Location', 'http://localhost:3000/retro/1/members/' + memberId);
     if (retroMock[req.params.id] && obj) res.status(200).send(obj);
+    else return next(createError(404));
+};
+
+exports.update = function (req, res, next) {
+    let obj = retroMock.find(retro => retro.id === parseInt(req.params.id));
+
+    res.set('Location', 'http://localhost:3000/retro/' + req.params.id);
+
+    if (obj) res.status(204).send();
     else return next(createError(404));
 };

@@ -13,6 +13,12 @@ const usersMock = require('../mocks/user.mock');
 
 chai.use(chaiHttp);
 
+function notFoundAssertion(err, res) {
+    expect(res.status).to.be.equal(404);
+    expect(res.body.errors).to.have.lengthOf(1);
+    expect(res.body.errors[0].message).to.be.equal('Not Found');
+}
+
 describe('RetroController', function() {
     describe('GET', function() {
         it('SHOULD return a retro object by id', function() {
@@ -27,11 +33,7 @@ describe('RetroController', function() {
         it('SHOULD NOT return a retro for a nonexistent retro id', function() {
             chai.request(server)
                 .get('/retro/5')
-                .end((err, res) => {
-                    expect(res.status).to.be.equal(404);
-                    expect(res.body.errors).to.have.lengthOf(1);
-                    expect(res.body.errors[0].message).to.be.equal('Not Found');
-                });
+                .end(notFoundAssertion);
         });
 
         it('SHOULD return a retro object by PIN code', function() {
@@ -46,11 +48,7 @@ describe('RetroController', function() {
         it('SHOULD NOT return a retro for a nonexistent PIN code', function() {
             chai.request(server)
                 .get('/retro/pincode/5843214')
-                .end((err, res) => {
-                    expect(res.status).to.be.equal(404);
-                    expect(res.body.errors).to.have.lengthOf(1);
-                    expect(res.body.errors[0].message).to.be.equal('Not Found');
-                });
+                .end(notFoundAssertion);
         });
 
         it('SHOULD return a array of list from a retro', function() {
@@ -66,11 +64,7 @@ describe('RetroController', function() {
         it('SHOULD NOT return an array of list for a nonexistent retro', function() {
             chai.request(server)
                 .get('/retro/5/lists')
-                .end((err, res) => {
-                    expect(res.status).to.be.equal(404);
-                    expect(res.body.errors).to.have.lengthOf(1);
-                    expect(res.body.errors[0].message).to.be.equal('Not Found');
-                });
+                .end(notFoundAssertion);
         });
 
         it('SHOULD return a array of cards from a retro', function() {
@@ -86,11 +80,7 @@ describe('RetroController', function() {
         it('SHOULD NOT return an array of cards for a nonexistent retro', function() {
             chai.request(server)
                 .get('/retro/5/cards')
-                .end((err, res) => {
-                    expect(res.status).to.be.equal(404);
-                    expect(res.body.errors).to.have.lengthOf(1);
-                    expect(res.body.errors[0].message).to.be.equal('Not Found');
-                });
+                .end(notFoundAssertion);
         });
 
         it('SHOULD return the facilitator of the retro', function() {
@@ -105,11 +95,7 @@ describe('RetroController', function() {
         it('SHOULD NOT return the facilitator for a nonexistent retro', function() {
             chai.request(server)
                 .get('/retro/5/user')
-                .end((err, res) => {
-                    expect(res.status).to.be.equal(404);
-                    expect(res.body.errors).to.have.lengthOf(1);
-                    expect(res.body.errors[0].message).to.be.equal('Not Found');
-                });
+                .end(notFoundAssertion);
         });
     });
 
@@ -155,11 +141,7 @@ describe('RetroController', function() {
                 .send({
                     'memberId': 1
                 })
-                .end((err, res) => {
-                    expect(res.status).to.be.equal(404);
-                    expect(res.body.errors).to.have.lengthOf(1);
-                    expect(res.body.errors[0].message).to.be.equal('Not Found');
-                });
+                .end(notFoundAssertion);
         });
 
         it('SHOULD NOT add a nonexistent user as a new member of a Retro', function() {
@@ -168,11 +150,32 @@ describe('RetroController', function() {
                 .send({
                     'memberId': 5
                 })
+                .end(notFoundAssertion);
+        });
+    });
+
+    describe('PATCH', function() {
+        it('SHOULD return success on update a Retro', function() {
+            chai.request(server)
+                .patch('/retro/1')
+                .send({
+                    'title': 'New Retro Title',
+                    'context': 'New Retro Title',
+                })
                 .end((err, res) => {
-                    expect(res.status).to.be.equal(404);
-                    expect(res.body.errors).to.have.lengthOf(1);
-                    expect(res.body.errors[0].message).to.be.equal('Not Found');
+                    expect(res.status).to.be.equal(204);
+                    expect(res.header.location).to.not.be.undefined;
                 });
+        });
+
+        it('SHOULD NOT return success on update a nonexistent Retro', function() {
+            chai.request(server)
+                .patch('/retro/5')
+                .send({
+                    'title': 'New Retro Title',
+                    'context': 'New Retro Title',
+                })
+                .end(notFoundAssertion);
         });
     });
 });
