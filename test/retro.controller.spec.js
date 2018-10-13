@@ -1,10 +1,12 @@
-const mocha = require('mocha');
-let chai = require('chai');
-const describe = mocha.describe;
-const it = mocha.it;
-let chaiHttp = require('chai-http');
-let server = require('../app');
-const expect = chai.expect;
+const mocha = require('mocha'),
+    chai = require('chai'),
+    chaiHttp = require('chai-http'),
+    server = require('../app'),
+    describe = mocha.describe,
+    it = mocha.it,
+    expect = chai.expect;
+
+const notFoundAssertion = require('./helpers/notFoundAssertion');
 
 const retroMock = require('../mocks/retro.mock');
 const listsMock = require('../mocks/list.mock');
@@ -12,12 +14,6 @@ const cardsMock = require('../mocks/card.mock');
 const usersMock = require('../mocks/user.mock');
 
 chai.use(chaiHttp);
-
-function notFoundAssertion(err, res) {
-    expect(res.status).to.be.equal(404);
-    expect(res.body.errors).to.have.lengthOf(1);
-    expect(res.body.errors[0].message).to.be.equal('Not Found');
-}
 
 describe('RetroController', function() {
     describe('GET', function() {
