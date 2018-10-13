@@ -192,10 +192,10 @@ describe('RetroController', function() {
         });
     });
 
-    describe('PATCH', function() {
+    describe('DELETE', function() {
         it('SHOULD return success on deleting a member from a Retro', function() {
             chai.request(server)
-                .del('retro/1/member/1')
+                .del('/retro/1/member/1')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(204);
                 });

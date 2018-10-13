@@ -73,9 +73,8 @@ exports.sortLists = function (req, res, next) {
 };
 
 exports.removeMember = function (req, res, next) {
-    let retroObj = retroMock.find(retro => retro.id === parseInt(req.params.retroid));
-    let userObj = usersMock.find(user => user.id === parseInt(req.params.userid));
-
+    let retroObj = retroMock.find(retro => retro.id === parseInt(req.params.retroId));
+    let userObj = usersMock.find(user => user.id === parseInt(req.params.userId));
     if (retroObj && userObj) res.status(204).send();
     else return next(createError(404));
 };
