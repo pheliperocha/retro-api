@@ -71,3 +71,11 @@ exports.sortLists = function (req, res, next) {
     if (obj) res.status(204).send();
     else return next(createError(404));
 };
+
+exports.removeMember = function (req, res, next) {
+    let retroObj = retroMock.find(retro => retro.id === parseInt(req.params.retroid));
+    let userObj = usersMock.find(user => user.id === parseInt(req.params.userid));
+
+    if (retroObj && userObj) res.status(204).send();
+    else return next(createError(404));
+};
