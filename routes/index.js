@@ -14,7 +14,7 @@ router.use('/cards', card);
 router.use('/lists', list);
 router.use('/retro', retro);
 router.get('/templates', template);
-router.use('/user', user);
+router.use('/users', user);
 
 router.get('/', function(req, res) {
     res.status(200).send({
