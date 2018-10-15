@@ -8,6 +8,7 @@ const mocha = require('mocha'),
 
 const userMock = require('../mocks/user.mock');
 const retroMock = require('../mocks/retro.mock');
+const actionMock = require('../mocks/action.mock');
 
 chai.use(chaiHttp);
 
@@ -19,6 +20,15 @@ describe('UserController', function() {
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.deep.equal(retroMock);
+                });
+        });
+
+        it('SHOULD return an array of actions from user', function() {
+            chai.request(server)
+                .get('/users/actions')
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(200);
+                    expect(res.body).to.deep.equal(actionMock);
                 });
         });
     });

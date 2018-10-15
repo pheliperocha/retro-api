@@ -5,6 +5,7 @@ const userController = require('../controllers/user.controller');
 // GET
 router.get('/', controllerMock);
 router.get('/retro', userController.getRetro);
+router.get('/actions', userController.getActions);
 router.get('/linkedinToken/', controllerMock);
 router.get('/login', controllerMock);
 

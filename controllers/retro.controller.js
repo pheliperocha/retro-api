@@ -37,7 +37,7 @@ exports.getFacilitator = function(req, res, next) {
 
 exports.create = function (req, res) {
     let obj = req.body;
-    obj.id = Math.floor(Math.random()*100);
+    obj.id = 1;
     obj.userid = Math.floor(Math.random()*100);
     obj.status = true;
 
