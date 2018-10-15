@@ -7,10 +7,13 @@ const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 const server = http.createServer(app);
+const io = app.io;
+io.attach(server);
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+io.on('connection', onSocketConnection);
 
 function normalizePort(val) {
     const port = parseInt(val, 10);
@@ -57,4 +60,8 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
     debug('NODE_ENV ' + process.env.NODE_ENV);
+}
+
+function onSocketConnection() {
+    debug('A user connected');
 }
