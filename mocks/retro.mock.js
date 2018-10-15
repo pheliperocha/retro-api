@@ -1,3 +1,5 @@
+const usersMock = require('../mocks/user.mock');
+
 module.exports = [
     {
         'id': 1,
@@ -6,7 +8,13 @@ module.exports = [
         'image': 'http://localhost:4200/assets/images/hopes_concern.png',
         'pin': 1234567,
         'status': true,
-        'userid': 1
+        'userid': 1,
+        'facilitator': usersMock[0],
+        'members': [
+            usersMock[1],
+            usersMock[2]
+        ],
+        'state': 2
     },
     {
         'id': 2,
@@ -15,6 +23,9 @@ module.exports = [
         'image': 'http://localhost:4200/assets/images/nice_ok.png',
         'pin': 9876543,
         'status': true,
-        'userid': 1
+        'userid': 1,
+        'facilitador': usersMock[0],
+        'members': [],
+        'state': 2
     }
 ];
