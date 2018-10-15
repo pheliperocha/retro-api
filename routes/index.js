@@ -8,12 +8,12 @@ const retro = require('./retro');
 const template = require('./template');
 const user = require('./user');
 
-router.get('/actions', action);
+router.use('/actions', action);
 router.use('/annotations', annotation);
 router.use('/cards', card);
 router.use('/lists', list);
 router.use('/retro', retro);
-router.get('/templates', template);
+router.use('/templates', template);
 router.use('/users', user);
 
 router.get('/', function(req, res) {

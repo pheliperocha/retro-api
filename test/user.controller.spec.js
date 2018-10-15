@@ -11,7 +11,7 @@ const retroMock = require('../mocks/retro.mock');
 
 chai.use(chaiHttp);
 
-describe.only('UserController', function() {
+describe('UserController', function() {
     describe('GET', function() {
         it('SHOULD return an array of retro from user', function() {
             chai.request(server)
