@@ -7,10 +7,22 @@ const mocha = require('mocha'),
     expect = chai.expect;
 
 const userMock = require('../mocks/user.mock');
+const retroMock = require('../mocks/retro.mock');
 
 chai.use(chaiHttp);
 
 describe.only('UserController', function() {
+    describe('GET', function() {
+        it('SHOULD return an array of retro from user', function() {
+            chai.request(server)
+                .get('/users/retro')
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(200);
+                    expect(res.body).to.deep.equal(retroMock);
+                });
+        });
+    });
+
     describe('POST', function() {
         it('SHOULD return a token and a user object to a valid login', function() {
             chai.request(server)
