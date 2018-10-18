@@ -1,3 +1,5 @@
+const usersMock = require('../mocks/user.mock');
+
 module.exports = [
     {
         'id': 1,
@@ -7,6 +9,7 @@ module.exports = [
         'retroid': 1,
         'status': true,
         'position': 0,
+        'user': usersMock[0]
     },
     {
         'id': 2,
@@ -16,5 +19,6 @@ module.exports = [
         'retroid': 1,
         'status': true,
         'position': 1,
+        'user': usersMock[1]
     }
 ];
