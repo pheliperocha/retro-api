@@ -16,6 +16,7 @@ router.post('/:id/member', retroController.addMember);
 // PATCH
 router.patch('/:id', retroController.update);
 router.patch('/:id/lists/positions', retroController.sortLists);
+router.patch('/:id/cards/positions', retroController.sortCards);
 
 // DELETE
 router.delete('/:retroId/member/:userId', retroController.removeMember);

@@ -72,6 +72,15 @@ exports.sortLists = function (req, res, next) {
     else return next(createError(404));
 };
 
+exports.sortCards = function (req, res, next) {
+    let obj = retroMock.find(retro => retro.id === parseInt(req.params.id));
+
+    res.set('Location', 'http://localhost:3000/retro/' + req.params.id + '/cards');
+
+    if (obj) res.status(204).send();
+    else return next(createError(404));
+};
+
 exports.removeMember = function (req, res, next) {
     let retroObj = retroMock.find(retro => retro.id === parseInt(req.params.retroId));
     let userObj = usersMock.find(user => user.id === parseInt(req.params.userId));
