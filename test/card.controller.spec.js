@@ -56,7 +56,7 @@ describe('CardController', function() {
 
         it('SHOULD return success on voting in a card', function() {
             chai.request(server)
-                .post('/cards/1/vote')
+                .post('/cards/1/votes')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(204);
                     expect(res.header.location).to.not.be.undefined;
@@ -104,7 +104,7 @@ describe('CardController', function() {
 
         it('SHOULD return success on unvoting a card', function() {
             chai.request(server)
-                .del('/cards/1/vote')
+                .del('/cards/1/votes')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(204);
                 });

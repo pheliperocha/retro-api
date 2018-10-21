@@ -19,7 +19,7 @@ describe('RetroController', function() {
     describe('GET', function() {
         it('SHOULD return a retro object by id', function() {
             chai.request(server)
-                .get('/retro/1')
+                .get('/retros/1')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.deep.equal(retroMock[0]);
@@ -28,13 +28,13 @@ describe('RetroController', function() {
 
         it('SHOULD NOT return a retro for a nonexistent retro id', function() {
             chai.request(server)
-                .get('/retro/5')
+                .get('/retros/5')
                 .end(notFoundAssertion);
         });
 
         it('SHOULD return a retro object by PIN code', function() {
             chai.request(server)
-                .get('/retro/pincode/9876543')
+                .get('/retros/pincode/9876543')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.deep.equal(retroMock[1]);
@@ -43,13 +43,13 @@ describe('RetroController', function() {
 
         it('SHOULD NOT return a retro for a nonexistent PIN code', function() {
             chai.request(server)
-                .get('/retro/pincode/5843214')
+                .get('/retros/pincode/5843214')
                 .end(notFoundAssertion);
         });
 
         it('SHOULD return a array of list from a retro', function() {
             chai.request(server)
-                .get('/retro/1/lists')
+                .get('/retros/1/lists')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.have.lengthOf(2);
@@ -59,13 +59,13 @@ describe('RetroController', function() {
 
         it('SHOULD NOT return an array of list for a nonexistent retro', function() {
             chai.request(server)
-                .get('/retro/5/lists')
+                .get('/retros/5/lists')
                 .end(notFoundAssertion);
         });
 
         it('SHOULD return a array of cards from a retro', function() {
             chai.request(server)
-                .get('/retro/1/cards')
+                .get('/retros/1/cards')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.have.lengthOf(2);
@@ -75,13 +75,13 @@ describe('RetroController', function() {
 
         it('SHOULD NOT return an array of cards for a nonexistent retro', function() {
             chai.request(server)
-                .get('/retro/5/cards')
+                .get('/retros/5/cards')
                 .end(notFoundAssertion);
         });
 
         it('SHOULD return the facilitator of the retro', function() {
             chai.request(server)
-                .get('/retro/1/user')
+                .get('/retros/1/users')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.deep.equal(usersMock[0]);
@@ -90,7 +90,7 @@ describe('RetroController', function() {
 
         it('SHOULD NOT return the facilitator for a nonexistent retro', function() {
             chai.request(server)
-                .get('/retro/5/user')
+                .get('/retros/5/users')
                 .end(notFoundAssertion);
         });
     });
@@ -101,7 +101,7 @@ describe('RetroController', function() {
             const contextMock = 'New Retrospective Context';
 
             chai.request(server)
-                .post('/retro/')
+                .post('/retros/')
                 .send({
                     'title': titleMock,
                     'context': contextMock,
@@ -120,7 +120,7 @@ describe('RetroController', function() {
 
         it('SHOULD add a new member on the Retro', function() {
             chai.request(server)
-                .post('/retro/1/member')
+                .post('/retros/1/members')
                 .send({
                     'memberId': 1
                 })
@@ -133,7 +133,7 @@ describe('RetroController', function() {
 
         it('SHOULD NOT add a new member on a nonexistent Retro', function() {
             chai.request(server)
-                .post('/retro/5/member')
+                .post('/retros/5/members')
                 .send({
                     'memberId': 1
                 })
@@ -142,7 +142,7 @@ describe('RetroController', function() {
 
         it('SHOULD NOT add a nonexistent user as a new member of a Retro', function() {
             chai.request(server)
-                .post('/retro/1/member')
+                .post('/retros/1/members')
                 .send({
                     'memberId': 5
                 })
@@ -153,7 +153,7 @@ describe('RetroController', function() {
     describe('PATCH', function() {
         it('SHOULD return success on update a Retro', function() {
             chai.request(server)
-                .patch('/retro/1')
+                .patch('/retros/1')
                 .send({
                     'title': 'New Retro Title',
                     'context': 'New Retro Title',
@@ -166,7 +166,7 @@ describe('RetroController', function() {
 
         it('SHOULD NOT return success on update a nonexistent Retro', function() {
             chai.request(server)
-                .patch('/retro/5')
+                .patch('/retros/5')
                 .send({
                     'title': 'New Retro Title',
                     'context': 'New Retro Title',
@@ -176,7 +176,7 @@ describe('RetroController', function() {
 
         it('SHOULD return success on updating the positions of the lists from a Retro', function() {
             chai.request(server)
-                .patch('/retro/1/lists/positions')
+                .patch('/retros/1/lists/positions')
                 .send({
                     'listId': 1,
                     'position': 1,
@@ -191,7 +191,7 @@ describe('RetroController', function() {
     describe('DELETE', function() {
         it('SHOULD return success on deleting a member from a Retro', function() {
             chai.request(server)
-                .del('/retro/1/member/1')
+                .del('/retros/1/members/1')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(204);
                 });

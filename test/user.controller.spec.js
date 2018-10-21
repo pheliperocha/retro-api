@@ -16,7 +16,7 @@ describe('UserController', function() {
     describe('GET', function() {
         it('SHOULD return an array of retro from user', function() {
             chai.request(server)
-                .get('/users/retro')
+                .get('/users/retros')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.deep.equal(retroMock);

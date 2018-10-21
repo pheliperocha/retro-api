@@ -12,7 +12,7 @@ router.use('/actions', action);
 router.use('/annotations', annotation);
 router.use('/cards', card);
 router.use('/lists', list);
-router.use('/retro', retro);
+router.use('/retros', retro);
 router.use('/templates', template);
 router.use('/users', user);
 
