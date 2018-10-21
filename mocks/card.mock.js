@@ -4,9 +4,9 @@ module.exports = [
     {
         'id': 1,
         'description': 'Card description 1',
-        'listid': 1,
-        'userid': 1,
-        'retroid': 1,
+        'listId': 1,
+        'userId': 1,
+        'retroId': 1,
         'status': true,
         'position': 0,
         'user': usersMock[0]
@@ -14,9 +14,9 @@ module.exports = [
     {
         'id': 2,
         'description': 'Card description 2',
-        'listid': 1,
-        'userid': 1,
-        'retroid': 1,
+        'listId': 1,
+        'userId': 1,
+        'retroId': 1,
         'status': true,
         'position': 1,
         'user': usersMock[1]

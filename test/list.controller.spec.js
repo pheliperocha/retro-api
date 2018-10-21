@@ -38,14 +38,14 @@ describe('ListController', function() {
                 .post('/lists/')
                 .send({
                     'title': titleMock,
-                    'retroid': retroIdMock
+                    'retroId': retroIdMock
                 })
                 .end((err, res) => {
                     expect(res.status).to.be.equal(201);
                     expect(res.body.title).to.be.equal(titleMock);
-                    expect(res.body.retroid).to.be.equal(retroIdMock);
+                    expect(res.body.retroId).to.be.equal(retroIdMock);
                     expect(res.body.id).to.not.be.undefined;
-                    expect(res.body.userid).to.not.be.undefined;
+                    expect(res.body.userId).to.not.be.undefined;
                     expect(res.body.status).to.be.true;
                     expect(res.header.location).to.not.be.undefined;
                 });

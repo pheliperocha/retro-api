@@ -8,7 +8,7 @@ const mocha = require('mocha'),
 
 const userMock = require('../mocks/user.mock');
 const retroMock = require('../mocks/retro.mock');
-const actionMock = require('../mocks/action.mock');
+const actionMock = require('../mocks/annotation.mock');
 
 chai.use(chaiHttp);
 

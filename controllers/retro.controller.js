@@ -18,13 +18,13 @@ exports.getByPin = function(req, res, next) {
 };
 
 exports.getLists = function(req, res, next) {
-    let obj = listsMock.map(list => { list.retroid = req.params.id; return list; });
+    let obj = listsMock.map(list => { list.retroId = req.params.id; return list; });
     if (retroMock[req.params.id]) res.status(200).send(obj);
     else return next(createError(404));
 };
 
 exports.getCards = function(req, res, next) {
-    let obj = cardsMock.map(card => { card.retroid = req.params.id; return card; });
+    let obj = cardsMock.map(card => { card.retroId = req.params.id; return card; });
     if (retroMock[req.params.id]) res.status(200).send(obj);
     else return next(createError(404));
 };
@@ -38,7 +38,7 @@ exports.getFacilitator = function(req, res, next) {
 exports.create = function (req, res) {
     let obj = req.body;
     obj.id = 1;
-    obj.userid = Math.floor(Math.random()*100);
+    obj.userId = Math.floor(Math.random()*100);
     obj.status = true;
 
     res.set('Location', 'http://localhost:3000/retro/' + obj.id);

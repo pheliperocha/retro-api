@@ -11,7 +11,7 @@ exports.get = function(req, res, next) {
 exports.create = function (req, res) {
     let obj = req.body;
     obj.id = Math.floor(Math.random()*100);
-    obj.userid = Math.floor(Math.random()*100);
+    obj.userId = Math.floor(Math.random()*100);
     obj.status = true;
 
     res.set('Location', 'http://localhost:3000/cards/' + obj.id);

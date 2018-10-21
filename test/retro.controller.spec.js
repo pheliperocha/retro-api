@@ -112,7 +112,7 @@ describe('RetroController', function() {
                     expect(res.body.title).to.be.equal(titleMock);
                     expect(res.body.context).to.be.equal(contextMock);
                     expect(res.body.id).to.not.be.undefined;
-                    expect(res.body.userid).to.not.be.undefined;
+                    expect(res.body.userId).to.not.be.undefined;
                     expect(res.body.status).to.be.true;
                     expect(res.header.location).to.not.be.undefined;
                 });
@@ -178,7 +178,7 @@ describe('RetroController', function() {
             chai.request(server)
                 .patch('/retro/1/lists/positions')
                 .send({
-                    'listid': 1,
+                    'listId': 1,
                     'position': 1,
                 })
                 .end((err, res) => {

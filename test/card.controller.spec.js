@@ -39,16 +39,16 @@ describe('CardController', function() {
                 .post('/cards/')
                 .send({
                     'description': descriptionMock,
-                    'listid': listIdMock,
-                    'retroid': retroIdMock
+                    'listId': listIdMock,
+                    'retroId': retroIdMock
                 })
                 .end((err, res) => {
                     expect(res.status).to.be.equal(201);
                     expect(res.body.description).to.be.equal(descriptionMock);
-                    expect(res.body.retroid).to.be.equal(retroIdMock);
-                    expect(res.body.listid).to.be.equal(listIdMock);
+                    expect(res.body.retroId).to.be.equal(retroIdMock);
+                    expect(res.body.listId).to.be.equal(listIdMock);
                     expect(res.body.id).to.not.be.undefined;
-                    expect(res.body.userid).to.not.be.undefined;
+                    expect(res.body.userId).to.not.be.undefined;
                     expect(res.body.status).to.be.true;
                     expect(res.header.location).to.not.be.undefined;
                 });
