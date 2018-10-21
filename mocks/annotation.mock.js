@@ -1,3 +1,5 @@
+const usersMock = require('../mocks/user.mock');
+
 module.exports = [
     {
         'id': 1,
@@ -5,6 +7,10 @@ module.exports = [
         'retroId': 1,
         'description': 'Annotation description 1',
         'status': true,
+        'responsibles': [
+            usersMock[0],
+            usersMock[2],
+        ]
     },
     {
         'id': 2,
@@ -12,6 +18,7 @@ module.exports = [
         'retroId': 1,
         'description': 'Annotation description 2',
         'status': true,
+        'responsibles': []
     },
     {
         'id': 3,
@@ -19,5 +26,8 @@ module.exports = [
         'retroId': 1,
         'description': 'Annotation description 3',
         'status': true,
+        'responsibles': [
+            usersMock[1],
+        ]
     },
 ];

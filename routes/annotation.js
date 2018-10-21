@@ -1,17 +1,11 @@
 const router = require('express').Router();
-const controllerMock = require('../mocks/controllerMock');
-
-// GET
-router.get('/:id', controllerMock);
+const annotationController = require('../controllers/annotation.controller');
 
 // POST
-router.post('/', controllerMock);
-router.post('/:id/user', controllerMock);
-
-// PATCH
-router.patch('/', controllerMock);
+router.post('/', annotationController.create);
+router.post('/:id/users', annotationController.addResponsible);
 
 // DELETE
-router.delete('/:annotationId/user/:userId', controllerMock);
+router.delete('/:annotationId/users/:userId', annotationController.removeResponsible);
 
 module.exports = router;
