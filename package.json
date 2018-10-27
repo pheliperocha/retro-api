@@ -9,7 +9,8 @@
     "test": "mocha",
     "test:coverage": "nyc --reporter=html npm test",
     "codacy": "nyc report --reporter=text-lcov | codacy-coverage --token <token> --username pheliperocha --projectName retro-api --commit <commit>",
-    "release": "standard-version"
+    "release": "standard-version",
+    "sequelize": "sequelize"
   },
   "dependencies": {
     "chai-http": "4.2.0",
@@ -35,6 +36,7 @@
     "mocha": "5.2.0",
     "nodemon": "1.18.4",
     "nyc": "13.0.1",
+    "sequelize-cli": "5.2.0",
     "standard-version": "4.4.0"
   },
   "standard-version": {
