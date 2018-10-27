@@ -1,19 +1,12 @@
 'use strict';
+
+const Schema = require('../db/schemas/users');
+
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('User', {
-        id: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER
-        },
-        firstname: DataTypes.STRING,
-        lastname: DataTypes.STRING,
-        email: DataTypes.STRING,
-        image: DataTypes.STRING,
-        linkedinId: DataTypes.INTEGER,
-        status: DataTypes.BOOLEAN
-    }, {});
+    const User = sequelize.define(
+        Schema.name,
+        Schema.definition(DataTypes),
+        {});
     User.associate = function() {};
     return User;
 };
