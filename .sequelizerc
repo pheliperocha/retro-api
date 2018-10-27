@@ -1,8 +1,19 @@
 const path = require('path');
+require('dotenv-safe').config();
+require('./config/index');
+
+const config = global.gConfig.db;
+
+let url;
+if (config.password !== 'null') {
+  url = `${config.dialect}://${config.username}:${config.password}:@${config.host}:3306/${config.database}`;
+} else {
+  url = `${config.dialect}://${config.username}:@${config.host}:3306/${config.database}`;
+}
 
 module.exports = {
-  "config": path.resolve('./config', 'config.js'),
-  "models-path": path.resolve('./models'),
-  "seeders-path": path.resolve('./db/seeders'),
-  "migrations-path": path.resolve('./db/migrations')
+    url,
+    'models-path': path.resolve('./models'),
+    'seeders-path': path.resolve('./db/seeders'),
+    'migrations-path': path.resolve('./db/migrations'),
 };
