@@ -2,7 +2,9 @@
 
 module.exports = {
     name: 'Users',
-    definition : function(DataTypes)  {
+    definition : function(DataTypes, Sequelize = null)  {
+        if (Sequelize === null) Sequelize = DataTypes;
+
         return {
             id: {
                 allowNull: false,
@@ -36,12 +38,12 @@ module.exports = {
             createdAt: {
                 allowNull: false,
                 type: DataTypes.DATE,
-                defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
             },
             updatedAt: {
                 allowNull: false,
                 type: DataTypes.DATE,
-                defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
             }
         };
     }

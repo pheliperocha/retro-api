@@ -1,6 +1,5 @@
-module.exports = {
+module.exports = [{
     'id': 1,
     'ttl': 1209600,
-    'userId': 1,
-    'created': new Date(),
-};
+    'userId': 1
+}];
