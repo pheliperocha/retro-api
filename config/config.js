@@ -10,7 +10,16 @@ module.exports = {
             'dialect': 'mysql'
         }
     },
-    'testing': {},
+    'test': {
+        db: {
+            'username': '',
+            'password': '',
+            'database': '',
+            'host': '',
+            'dialect': 'sqlite',
+            'storage': './db/database.sqlite'
+        }
+    },
     'staging': {},
     'production': {}
 };

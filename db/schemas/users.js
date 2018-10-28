@@ -36,12 +36,12 @@ module.exports = {
             createdAt: {
                 allowNull: false,
                 type: DataTypes.DATE,
-                defaultValue: DataTypes.literal('NOW()')
+                defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
             },
             updatedAt: {
                 allowNull: false,
                 type: DataTypes.DATE,
-                defaultValue: DataTypes.literal('NOW()')
+                defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
             }
         };
     }
