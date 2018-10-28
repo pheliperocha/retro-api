@@ -1,5 +1,3 @@
-const usersMock = require('../mocks/user.mock');
-
 module.exports = [
     {
         'id': 1,
