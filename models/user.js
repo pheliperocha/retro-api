@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.AccessTokens, {
             foreignKey: 'userId'
         });
+
+        User.hasMany(models.Retros, {
+            foreignKey: 'userId'
+        });
     };
     return User;
 };

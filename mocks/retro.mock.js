@@ -9,11 +9,6 @@ module.exports = [
         'pin': 1234567,
         'status': true,
         'userId': 1,
-        'facilitator': usersMock[0],
-        'members': [
-            usersMock[1],
-            usersMock[2]
-        ],
         'state': 3
     },
     {
@@ -24,8 +19,6 @@ module.exports = [
         'pin': 9876543,
         'status': true,
         'userId': 1,
-        'facilitador': usersMock[0],
-        'members': [],
         'state': 2
     }
 ];
