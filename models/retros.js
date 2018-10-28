@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
         {});
     Retros.associate = function(models) {
         Retros.belongsTo(models.Users);
+
+        Retros.belongsToMany(models.Users, {
+            through: 'Members',
+            as: 'members',
+            foreignKey: 'retroId'
+        });
     };
     return Retros;
 };

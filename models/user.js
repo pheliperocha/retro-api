@@ -15,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.Retros, {
             foreignKey: 'userId'
         });
+
+        User.belongsToMany(models.Retros, {
+            through: 'Members',
+            as: 'memberOf',
+            foreignKey: 'userId'
+        });
     };
     return User;
 };
