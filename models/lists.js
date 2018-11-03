@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         {});
     Lists.associate = function(models) {
         Lists.belongsTo(models.Retros);
+
+        Lists.hasMany(models.Cards, {
+            foreignKey: 'listId'
+        });
     };
     return Lists;
 };

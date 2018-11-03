@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         Retros.hasMany(models.Lists, {
             foreignKey: 'retroId'
         });
+
+        Retros.hasMany(models.Cards, {
+            foreignKey: 'retroId'
+        });
     };
     return Retros;
 };
