@@ -4,6 +4,7 @@
   "scripts": {
     "start": "set DEBUG=* && set NODE_ENV=development& nodemon ./bin/www",
     "start:nodebug": "set NODE_ENV=development& nodemon ./bin/www",
+    "start:test": "set DEBUG=* && set NODE_ENV=test& nodemon ./bin/www",
     "start:prod": "set DEBUG=* && set NODE_ENV=production&& nodemon ./bin/www",
     "lint": "eslint .",
     "test": "set NODE_ENV=test& mocha",

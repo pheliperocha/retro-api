@@ -32,6 +32,7 @@ We also use [Conventional Commits](http://conventionalcommits.org/) and [Standar
 |Command|Description|
 |-------:|--------|
 | npm start | Serve API with express DEBUG and Nodemon to live-reload on changes. |
+| npm run start:test | Serve API with Test environment setted and with express DEBUG and Nodemon to live-reload on changes. |
 | npm run start:nodebug | Serve API and Nodemon to live-reload on changes. |
 | npm run start:prod | Serve API with Production environment setted and Nodemon to live-reload on changes. |
 | npm run lint | Execute a lint using eslint. |
@@ -39,6 +40,14 @@ We also use [Conventional Commits](http://conventionalcommits.org/) and [Standar
 | npm run test:coverage | Execute unit tests outputting a code coverage report on `/coverage` folder. |
 | npm run release | Run Standard-Version CLI to make the changelog and bump version. |
 | npm run sequelize -- ${args} | Run Sequelize CLI where ${args} are the sequelize arguments you wanna pass, to see all checks [Sequelize CLI Github repo](https://github.com/sequelize/cli#usage) |
+| npm run sequelize -- model:generate --name ${modelName} --attributes ${attributeName}:string | Create a new model |
+| npm run sequelize -- migration:generate --name ${migrationName} | Create a new migration |
+| npm run sequelize -- seed:generate --name ${seedName} | Create a new seed |
+| npm run sequelize -- db:migrate | Run all the pending migrations |
+| npm run sequelize -- db:migrate:undo:all | Undo all the migrations |
+| npm run sequelize -- db:migrate:undo:all --to XXXXXXXXXXXXXX-create-cards.js | Revert to a specific migration |
+| npm run sequelize -- db:seed:all | Run all seeds |
+| npm run sequelize -- db:seed:undo:all | Undo all the seeds |
 
 ## ERD
 

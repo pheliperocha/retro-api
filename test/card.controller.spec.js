@@ -18,7 +18,9 @@ describe('CardController', function() {
                 .get('/cards/1')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
-                    expect(res.body).to.deep.equal(cardsMock[0]);
+                    expect(res.body.id).to.be.equal(cardsMock[0].id);
+                    expect(res.body.description).to.be.equal(cardsMock[0].description);
+                    expect(res.body.User.id).to.be.equal(cardsMock[0].userId);
                 });
         });
 

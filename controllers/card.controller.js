@@ -2,10 +2,32 @@ const createError = require('http-errors');
 
 const cardsMock = require('../mocks/card.mock');
 
+const Cards = require('../models/index').Cards;
+const CardVotes = require('../models/index').CardVotes;
+const Users = require('../models/index').Users;
+
 exports.get = function(req, res, next) {
-    let obj = cardsMock.find(card => card.id === parseInt(req.params.id));
-    if (obj) res.status(200).send(obj);
-    else return next(createError(404));
+    const cardId = req.params.id;
+
+    Cards.findById(cardId, {
+        attributes: ['id', 'listId', 'description', 'position', 'status'],
+        include: [{
+            model: CardVotes,
+            attributes: ['id', 'status'],
+            include: [{
+                model: Users,
+                attributes: ['id', 'firstname', 'lastname', 'image'],
+            }]
+        }, {
+            model: Users,
+            attributes: ['id', 'firstname', 'lastname', 'image'],
+        }],
+    }).then(card => {
+        if (card) res.status(200).send(card);
+        else return next(createError(404));
+    }).catch(err => {
+        return next(createError(err));
+    });
 };
 
 exports.create = function (req, res) {

@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         Cards.belongsTo(models.Retros);
         Cards.belongsTo(models.Lists);
         Cards.belongsTo(models.Users);
+
+        Cards.hasMany(models.CardVotes, {
+            foreignKey: 'cardId'
+        });
     };
     return Cards;
 };
