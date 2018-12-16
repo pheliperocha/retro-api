@@ -3,6 +3,7 @@ const retroMock = require('../mocks/retro.mock');
 
 const createError = require('http-errors');
 
+const Users = require('../models/index').Users;
 const Annotations = require('../models/index').Annotations;
 const Retros = require('../models/index').Retros;
 const Cards = require('../models/index').Cards;
@@ -14,15 +15,19 @@ exports.getRetro = function(req, res) {
 exports.getActions = function(req, res, next) {
     const myUserId = 2;
     
-    Annotations.findAll({
-        where: [{ userId: myUserId, status: true }],
-        attributes: [ 'id', 'description' ],
+    Users.findById(myUserId, {
+        attributes: ['id'],
         include: [{
-            model: Retros,
-            attributes: [ 'id', 'title', 'image' ],
-        }, {
-            model: Cards,
-            attributes: [ 'id', 'description' ],
+            model: Annotations, as: 'responsibleFor',
+            where: [{ status: true }],
+            attributes: ['id', 'description'],
+            include: [{
+                model: Retros,
+                attributes: ['id', 'title', 'image'],
+            }, {
+                model: Cards,
+                attributes: ['id', 'description'],
+            }]
         }]
     }).then(obj => {
         if (obj) res.status(200).send(obj);

@@ -33,6 +33,12 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.Annotations, {
             foreignKey: 'userId'
         });
+
+        User.belongsToMany(models.Annotations, {
+            through: 'AnnotationResponsibles',
+            as: 'responsibleFor',
+            foreignKey: 'userId'
+        });
     };
     return User;
 };

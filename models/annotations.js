@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
         Annotations.belongsTo(models.Retros);
         Annotations.belongsTo(models.Cards);
         Annotations.belongsTo(models.Users);
+
+        Annotations.belongsToMany(models.Users, {
+            through: 'AnnotationResponsibles',
+            as: 'responsibles',
+            foreignKey: 'annotationId'
+        });
     };
     return Annotations;
 };
