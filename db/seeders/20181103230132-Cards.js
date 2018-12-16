@@ -1,10 +1,10 @@
 'use strict';
 
-const ListsMock = require('../../mocks/card.mock');
+const CardMock = require('../../mocks/card.mock');
 
 module.exports = {
     up: (queryInterface) => {
-        return queryInterface.bulkInsert('Cards', ListsMock, {});
+        return queryInterface.bulkInsert('Cards', CardMock, {});
     },
     down: (queryInterface) => {
         return queryInterface.bulkDelete('Cards', null, {});

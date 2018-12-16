@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         Retros.hasMany(models.Cards, {
             foreignKey: 'retroId'
         });
+
+        Retros.hasMany(models.Annotations, {
+            foreignKey: 'retroId'
+        });
     };
     return Retros;
 };

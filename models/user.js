@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.CardVotes, {
             foreignKey: 'userId'
         });
+
+        User.hasMany(models.Annotations, {
+            foreignKey: 'userId'
+        });
     };
     return User;
 };
