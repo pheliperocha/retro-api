@@ -11,7 +11,7 @@
     "test:coverage": "set NODE_ENV=test& nyc --reporter=html npm test",
     "codacy": "set NODE_ENV=test& nyc report --reporter=text-lcov | codacy-coverage --token <token> --username pheliperocha --projectName retro-api --commit <commit>",
     "release": "standard-version",
-    "sequelize": "sequelize"
+    "sequelize": "set NODE_ENV=test& sequelize"
   },
   "dependencies": {
     "chai-http": "4.2.0",
@@ -34,10 +34,10 @@
     "@types/express": "4.16.0",
     "chai": "4.2.0",
     "eslint": "5.6.1",
-    "mocha": "5.2.0",
+    "mocha": "^5.2.0",
     "nodemon": "1.18.4",
     "nyc": "13.0.1",
-    "sequelize-cli": "5.2.0",
+    "sequelize-cli": "^5.2.0",
     "sqlite3": "4.0.3",
     "standard-version": "4.4.0"
   },

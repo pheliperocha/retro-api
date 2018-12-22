@@ -9,7 +9,7 @@ const Users = require('../models/index').Users;
 exports.get = function(req, res, next) {
     const cardId = req.params.id;
 
-    Cards.findById(cardId, {
+    Cards.findByPk(cardId, {
         attributes: ['id', 'listId', 'description', 'position', 'status'],
         include: [{
             model: CardVotes,
