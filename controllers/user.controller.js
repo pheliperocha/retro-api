@@ -13,9 +13,9 @@ exports.getRetro = function(req, res) {
 };
 
 exports.getActions = function(req, res, next) {
-    const myUserId = 2;
+    const myUserId = 1;
     
-    Users.findById(myUserId, {
+    Users.findByPk(myUserId, {
         attributes: ['id'],
         include: [{
             model: Annotations, as: 'responsibleFor',
@@ -30,7 +30,7 @@ exports.getActions = function(req, res, next) {
             }]
         }]
     }).then(obj => {
-        if (obj) res.status(200).send(obj);
+        if (obj) res.status(200).send(obj.responsibleFor);
         else return next(createError(404));
     }).catch(err => {
         return next(createError(err));

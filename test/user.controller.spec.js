@@ -8,33 +8,36 @@ const mocha = require('mocha'),
 
 const userMock = require('../mocks/user.mock');
 const retroMock = require('../mocks/retro.mock');
-const actionMock = require('../mocks/annotation.mock');
+const annotationMock = require('../mocks/annotation.mock');
 
 chai.use(chaiHttp);
 
 describe('UserController', function() {
     describe('GET', function() {
-        it('SHOULD return an array of retro from user', function() {
+        it('SHOULD return an array of retro from user', (done) => {
             chai.request(server)
                 .get('/users/retros')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.deep.equal(retroMock);
+                    done();
                 });
         });
 
-        it('SHOULD return an array of actions from user', function() {
+        it('SHOULD return an array of actions from user', (done) => {
             chai.request(server)
                 .get('/users/actions')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
-                    expect(res.body).to.deep.equal(actionMock);
+                    expect(res.body[0].id).to.be.equal(annotationMock[0].id);
+                    expect(res.body[0].description).to.be.equal(annotationMock[0].description);
+                    done();
                 });
         });
     });
 
     describe('POST', function() {
-        it('SHOULD return a token and a user object to a valid login', function() {
+        it('SHOULD return a token and a user object to a valid login', (done) => {
             chai.request(server)
                 .post('/users/login')
                 .send({
@@ -47,6 +50,7 @@ describe('UserController', function() {
                     expect(res.body.token).to.not.be.undefined;
                     expect(res.body.token).to.not.be.null;
                     expect(res.body.user).to.deep.equal(userMock[0]);
+                    done();
                 });
         });
     });

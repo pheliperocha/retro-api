@@ -12,12 +12,13 @@ chai.use(chaiHttp);
 
 describe('UserController', function() {
     describe('GET', function() {
-        it('SHOULD return an array of templates', function() {
+        it('SHOULD return an array of templates', function(done) {
             chai.request(server)
                 .get('/templates')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.deep.equal(templateMock);
+                    done();
                 });
         });
     });
