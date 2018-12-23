@@ -1,6 +1,6 @@
 'use strict';
 
-const Schema = require('../schemas/Annotations');
+const Schema = require('../schemas/annotations');
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
