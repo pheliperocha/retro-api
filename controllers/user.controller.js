@@ -8,14 +8,14 @@ const Annotations = require('../models/index').Annotations;
 const Retros = require('../models/index').Retros;
 const Cards = require('../models/index').Cards;
 
+const jwt = require('jsonwebtoken');
+
 exports.getRetro = function(req, res) {
     res.status(200).send(retroMock);
 };
 
 exports.getActions = function(req, res, next) {
-    const myUserId = 1;
-    
-    Users.findByPk(myUserId, {
+    Users.findByPk(req.user.id, {
         attributes: ['id'],
         include: [{
             model: Annotations, as: 'responsibleFor',
@@ -39,8 +39,15 @@ exports.getActions = function(req, res, next) {
 };
 
 exports.login = function(req, res) {
+    const payload = {
+        id: 1,
+        email: 'john.snow@gmail.com'
+    };
+
+    const token = jwt.sign(payload, process.env.SECRETY_KEY, { expiresIn: '12h', algorithm: 'HS256' });
+
     res.status(200).send({
-        token: 'VALID_TOKEN',
+        token: token,
         user: userMock[0]
     });
 };

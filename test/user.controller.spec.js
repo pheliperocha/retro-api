@@ -3,6 +3,7 @@ const mocha = require('mocha'),
     chaiHttp = require('chai-http'),
     server = require('../app'),
     describe = mocha.describe,
+    before = mocha.before,
     it = mocha.it,
     expect = chai.expect;
 
@@ -12,11 +13,32 @@ const annotationMock = require('../mocks/annotation.mock');
 
 chai.use(chaiHttp);
 
+let token = '';
+
 describe('UserController', function() {
+    before((done) => {
+        chai.request(server)
+            .get('/users/login')
+            .end((err, res) => {
+                token = 'Barear ' + res.body.token;
+                done();
+            });
+    });
+
     describe('GET', function() {
+        it('SHOULD NOT allow from unauthenticated users', (done) => {
+            chai.request(server)
+                .get('/users/retros')
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(401);
+                    done();
+                });
+        });
+
         it('SHOULD return an array of retro from user', (done) => {
             chai.request(server)
                 .get('/users/retros')
+                .set('authorization', token)
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.deep.equal(retroMock);
@@ -27,6 +49,7 @@ describe('UserController', function() {
         it('SHOULD return an array of actions from user', (done) => {
             chai.request(server)
                 .get('/users/actions')
+                .set('authorization', token)
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body[0].id).to.be.equal(annotationMock[0].id);
