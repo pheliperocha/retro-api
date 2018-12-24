@@ -1,8 +1,6 @@
 let chai = require('chai');
 const expect = chai.expect;
 
-
-
 module.exports = (res) => {
     expect(res.status).to.be.equal(404);
     expect(res.body.errors).to.have.lengthOf(1);
