@@ -1,5 +1,3 @@
-const retroMock = require('../mocks/retro.mock');
-
 const createError = require('http-errors');
 
 const Users = require('../models/index').Users;
@@ -10,8 +8,18 @@ const Cards = require('../models/index').Cards;
 const jwt = require('jsonwebtoken');
 const request = require('request');
 
-exports.getRetro = function(req, res) {
-    res.status(200).send(retroMock);
+exports.getRetro = function(req, res, next) {
+    Users.findByPk(req.user.id, {
+        attributes: ['id'],
+        include: [{
+            model: Retros
+        }]
+    }).then(obj => {
+        if (obj) res.status(200).send(obj.Retros);
+        else return next(createError(404));
+    }).catch(err => {
+        return next(createError(err));
+    });
 };
 
 exports.getActions = function(req, res, next) {
