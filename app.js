@@ -7,6 +7,7 @@ const express = require('express'),
     cookieParser = require('cookie-parser'),
     logger = require('morgan'),
     cors = require('cors'),
+    expressValidator = require('express-validator'),
     router = require('./routes'),
     io = require('socket.io')(),
     app = express();
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressValidator());
 app.io = io;
 
 const swaggerUi = require('swagger-ui-express'),

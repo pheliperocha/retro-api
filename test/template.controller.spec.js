@@ -6,8 +6,6 @@ const mocha = require('mocha'),
     it = mocha.it,
     expect = chai.expect;
 
-const templateMock = require('../mocks/template.mock');
-
 chai.use(chaiHttp);
 
 describe('UserController', function() {
@@ -17,7 +15,13 @@ describe('UserController', function() {
                 .get('/templates')
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
-                    expect(res.body).to.deep.equal(templateMock);
+                    expect(res.body.length).to.equal(2);
+
+                    expect(res.body[0].id).to.equal(1);
+                    expect(res.body[0].title).to.equal('Hopes and Concerns');
+
+                    expect(res.body[1].id).to.equal(2);
+                    expect(res.body[1].title).to.equal('Nice and Ok');
                     done();
                 });
         });
