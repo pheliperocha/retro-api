@@ -89,7 +89,7 @@ const _createUserJwt = function (user) {
         email: user.email
     };
 
-    return jwt.sign(payload, process.env.SECRETY_KEY, { expiresIn: '12h', algorithm: 'HS256' });
+    return jwt.sign(payload, process.env.SECRETY_KEY, { expiresIn: '7d', algorithm: 'HS256' });
 };
 
 const _findOrCreateUserByEmail = function(user, _cb) {
