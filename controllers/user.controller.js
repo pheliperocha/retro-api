@@ -23,27 +23,35 @@ exports.getRetro = function(req, res, next) {
 };
 
 exports.getActions = function(req, res, next) {
-    Users.findByPk(req.user.id, {
+    Users.findByPk(1, {
         attributes: ['id'],
         include: [{
             model: Annotations, as: 'responsibleFor',
             where: [{ status: true }],
             attributes: ['id', 'description'],
+            through: { attributes: [] },
             include: [{
                 model: Retros,
                 attributes: ['id', 'title', 'image'],
             }, {
                 model: Cards,
                 attributes: ['id', 'description'],
-            }]
+            }, {
+                model: Users, as: 'responsibles',
+                attributes: ['id', 'firstname', 'lastname', 'image'],
+                through: { attributes: [] }
+            }],
         }]
     }).then(obj => {
-        if (obj) res.status(200).send(obj.responsibleFor);
+        const newObj = obj.responsibleFor.map(res => {
+            return res.Retro;
+        });
+
+        if (obj) res.status(200).send(newObj);
         else return next(createError(404));
     }).catch(err => {
         return next(createError(err));
     });
-
 };
 
 exports.login = function(req, res, next) {

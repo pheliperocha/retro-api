@@ -7,7 +7,7 @@ const auth = require('../middlewares/auth');
 // GET
 router.get('/', auth, controllerMock);
 router.get('/retros', auth, userController.getRetro);
-router.get('/actions', auth, userController.getActions);
+router.get('/actions', userController.getActions);
 router.get('/linkedinToken/', controllerMock);
 router.get('/login', userController.login);
 
