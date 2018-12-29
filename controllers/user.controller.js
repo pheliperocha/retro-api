@@ -23,7 +23,7 @@ exports.getRetro = function(req, res, next) {
 };
 
 exports.getActions = function(req, res, next) {
-    Users.findByPk(1, {
+    Users.findByPk(req.user.id, {
         attributes: ['id'],
         include: [{
             model: Annotations, as: 'responsibleFor',
