@@ -10,7 +10,7 @@ const notFoundAssertion = require('./helpers/notFoundAssertion');
 
 chai.use(chaiHttp);
 
-describe('RetroController', function() {
+describe('AnnotationController', function() {
     describe('POST', function() {
         it('SHOULD create a new Annotation', function(done) {
             const descriptionMock = 'New Annotation description';
@@ -48,7 +48,7 @@ describe('RetroController', function() {
 
         it('SHOULD NOT add a new responsible on a nonexistent Annotation', function(done) {
             chai.request(server)
-                .post('/annotations/5/users')
+                .post('/annotations/33/users')
                 .send({
                     'userId': 1
                 })

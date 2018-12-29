@@ -8,7 +8,6 @@ const mocha = require('mocha'),
     expect = chai.expect;
 
 const retroMock = require('../mocks/retro.mock');
-const annotationMock = require('../mocks/annotation.mock');
 const createUserJwt = require('./helpers/createUserJwt');
 
 chai.use(chaiHttp);
@@ -53,8 +52,11 @@ describe('UserController', function() {
                 .set('authorization', token)
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
-                    expect(res.body[0].id).to.be.equal(annotationMock[0].id);
-                    expect(res.body[0].description).to.be.equal(annotationMock[0].description);
+
+                    expect(res.body[0].id).to.be.equal(1);
+                    expect(res.body[1].title).to.be.equal('Retrospective Title 2');
+                    expect(res.body[0].annotations[0].description).to.be.equal('Annotation description 1');
+                    expect(res.body[0].annotations[1].responsibles[0].firstname).to.be.equal('Jon');
                     done();
                 });
         });
