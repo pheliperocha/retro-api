@@ -32,7 +32,7 @@ exports.getActions = function(req, res, next) {
             through: { attributes: [] },
             include: [{
                 model: Retros,
-                attributes: ['id', 'title', 'image'],
+                attributes: ['id', 'title'],
             }, {
                 model: Cards,
                 attributes: ['id', 'description'],
@@ -43,9 +43,24 @@ exports.getActions = function(req, res, next) {
             }],
         }]
     }).then(obj => {
-        const newObj = obj.responsibleFor.map(res => {
-            return res.Retro;
-        });
+
+        const newObj = obj.responsibleFor.reduce((acc, curVal) => {
+            const retro = curVal.Retro.dataValues;
+
+            if (!acc[retro.id]) {
+                acc[retro.id] = [];
+                acc[retro.id] = retro;
+            }
+
+            if (!acc[retro.id]['annotations']) { acc[retro.id]['annotations'] = []; }
+            acc[retro.id]['annotations'].push({
+                id: curVal.id,
+                description: curVal.description,
+                responsibles: curVal.responsibles
+            });
+
+            return acc;
+        }, []).filter(() => Boolean);
 
         if (obj) res.status(200).send(newObj);
         else return next(createError(404));
