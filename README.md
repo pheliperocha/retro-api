@@ -12,6 +12,7 @@
     <a href="https://www.codacy.com/app/pheliperocha/retro-api?utm_source=github.com&utm_medium=referral&utm_content=pheliperocha/retro-api&utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/73bb0be2ca8d4fd489f54a10e2fa900c" alt="Codacy Badge"></a>    
     <a href="https://github.com/pheliperocha/retro-api/issues"><img src="https://img.shields.io/github/issues/pheliperocha/retro-api.svg"></a>
     <br>
+    <a href="https://snyk.io/test/github/pheliperocha/retro-api?targetFile=package.json"><img src="https://snyk.io/test/github/pheliperocha/retro-api/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/pheliperocha/retro-api?targetFile=package.json" style="max-width:100%;"></a>
     <a href="https://david-dm.org/pheliperocha/retro-api" title="dependencies status"><img src="https://david-dm.org/pheliperocha/retro-api/status.svg"/></a>
     <a href="https://david-dm.org/pheliperocha/retro-api?type=dev" title="devDependencies status"><img src="https://david-dm.org/pheliperocha/retro-api/dev-status.svg"/></a>
     <br>
