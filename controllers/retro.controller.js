@@ -1,7 +1,6 @@
 const createError = require('http-errors');
 
 const retroMock = require('../mocks/retro.mock');
-const listsMock = require('../mocks/list.mock');
 const cardsMock = require('../mocks/card.mock');
 const usersMock = require('../mocks/user.mock');
 
@@ -10,11 +9,12 @@ const Sequelize = Models.sequelize;
 const Retros = Models.Retros;
 const Lists = Models.Lists;
 const Templates = Models.Templates;
+const Users = Models.Users;
 
 exports.get = function(req, res, next) {
-    let obj = retroMock.find(retro => retro.id === parseInt(req.params.id));
-    if (obj) res.status(200).send(obj);
-    else return next(createError(404));
+    Retros.findByPk(req.params.id, { include: [{ model: Users, as: 'Facilitator' }] }).then(obj => {
+        return res.status(200).send(obj);
+    }).catch(err => next(createError(err)));
 };
 
 exports.getByPin = function(req, res, next) {
@@ -24,9 +24,9 @@ exports.getByPin = function(req, res, next) {
 };
 
 exports.getLists = function(req, res, next) {
-    let obj = listsMock.map(list => { list.retroId = req.params.id; return list; });
-    if (retroMock[req.params.id]) res.status(200).send(obj);
-    else return next(createError(404));
+    Retros.findByPk(req.params.id, { include: [{ model: Lists }] }).then(obj => {
+        return res.status(200).send(obj.Lists);
+    }).catch(err => next(createError(err)));
 };
 
 exports.getCards = function(req, res, next) {

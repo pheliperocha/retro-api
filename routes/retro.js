@@ -4,9 +4,9 @@ const retroController = require('../controllers/retro.controller');
 const auth = require('../middlewares/auth');
 
 // GET
-router.get('/:id', retroController.get);
+router.get('/:id', auth, retroController.get);
 router.get('/pincode/:pin', retroController.getByPin);
-router.get('/:id/lists', retroController.getLists);
+router.get('/:id/lists', auth, retroController.getLists);
 router.get('/:id/cards', retroController.getCards);
 router.get('/:id/users', retroController.getFacilitator);
 

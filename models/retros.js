@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         Schema.definition(DataTypes, sequelize),
         {});
     Retros.associate = function(models) {
-        Retros.belongsTo(models.Users);
+        Retros.belongsTo(models.Users, { as: 'Facilitator', foreignKey: 'userId' });
 
         Retros.belongsToMany(models.Users, {
             through: 'Members',
