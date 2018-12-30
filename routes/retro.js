@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const retroController = require('../controllers/retro.controller');
+const auth = require('../middlewares/auth');
 
 // GET
 router.get('/:id', retroController.get);
@@ -10,7 +11,7 @@ router.get('/:id/cards', retroController.getCards);
 router.get('/:id/users', retroController.getFacilitator);
 
 // POST
-router.post('/', retroController.create);
+router.post('/', auth, retroController.create);
 router.post('/:id/members', retroController.addMember);
 
 // PATCH

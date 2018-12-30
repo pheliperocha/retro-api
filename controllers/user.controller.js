@@ -43,30 +43,32 @@ exports.getActions = function(req, res, next) {
             }],
         }]
     }).then(obj => {
+        let newObj;
 
-        const newObj = obj.responsibleFor.reduce((acc, curVal) => {
-            const retro = curVal.Retro.dataValues;
+        if (obj && obj.responsibleFor) {
+            newObj = obj.responsibleFor.reduce((acc, curVal) => {
+                const retro = curVal.Retro.dataValues;
 
-            if (!acc[retro.id]) {
-                acc[retro.id] = [];
-                acc[retro.id] = retro;
-            }
+                if (!acc[retro.id]) {
+                    acc[retro.id] = [];
+                    acc[retro.id] = retro;
+                }
 
-            if (!acc[retro.id]['annotations']) { acc[retro.id]['annotations'] = []; }
-            acc[retro.id]['annotations'].push({
-                id: curVal.id,
-                description: curVal.description,
-                responsibles: curVal.responsibles
-            });
+                if (!acc[retro.id]['annotations']) { acc[retro.id]['annotations'] = []; }
+                acc[retro.id]['annotations'].push({
+                    id: curVal.id,
+                    description: curVal.description,
+                    responsibles: curVal.responsibles
+                });
 
-            return acc;
-        }, []).filter(() => Boolean);
+                return acc;
+            }, []).filter(() => Boolean);
+        } else {
+            newObj = obj;
+        }
 
-        if (obj) res.status(200).send(newObj);
-        else return next(createError(404));
-    }).catch(err => {
-        return next(createError(err));
-    });
+        return res.status(200).send(newObj);
+    }).catch(err => next(createError(err)));
 };
 
 exports.login = function(req, res, next) {

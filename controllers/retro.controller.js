@@ -5,6 +5,12 @@ const listsMock = require('../mocks/list.mock');
 const cardsMock = require('../mocks/card.mock');
 const usersMock = require('../mocks/user.mock');
 
+const Models = require('../models/index');
+const Sequelize = Models.sequelize;
+const Retros = Models.Retros;
+const Lists = Models.Lists;
+const Templates = Models.Templates;
+
 exports.get = function(req, res, next) {
     let obj = retroMock.find(retro => retro.id === parseInt(req.params.id));
     if (obj) res.status(200).send(obj);
@@ -35,15 +41,47 @@ exports.getFacilitator = function(req, res, next) {
     else return next(createError(404));
 };
 
-exports.create = function (req, res) {
-    let obj = req.body;
-    obj.id = 1;
-    obj.userId = Math.floor(Math.random()*100);
-    obj.status = true;
+exports.create = function (req, res, next) {
+    let { title, context, templateId } = req.body;
 
-    res.set('Location', 'http://localhost:3000/retro/' + obj.id);
+    Templates.findByPk(templateId).then(template => {
 
-    res.status(201).send(obj);
+        const obj = {
+            title,
+            context,
+            image: template.image,
+            userId: req.user.id,
+            state: 1,
+            status: true
+        };
+
+        Sequelize.transaction((t) => {
+
+            return Retros.create(obj, { transaction: t }).then(retro => {
+                res.set('Location', `${global.gConfig.apiUrl}retro/${retro.id}`);
+
+                const lists = [];
+                const listTitles = JSON.parse(template.structure);
+                for (const [index, title] of listTitles.entries()) {
+                    lists.push({
+                        title: title,
+                        retroId: retro.id,
+                        status: true,
+                        position: index
+                    });
+                }
+
+                return Lists.bulkCreate(lists, { transaction: t }).then(() => {
+                    return retro;
+                });
+                
+            });
+
+        }).then(resT => {
+            return res.status(200).send(resT);
+        }).catch(err => next(createError(err)));
+
+    }).catch(err => next(createError(err)));
 };
 
 exports.addMember = function (req, res, next) {
