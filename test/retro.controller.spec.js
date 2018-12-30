@@ -3,33 +3,51 @@ const mocha = require('mocha'),
     chaiHttp = require('chai-http'),
     server = require('../app'),
     describe = mocha.describe,
+    before = mocha.before,
     it = mocha.it,
     expect = chai.expect;
 
 const notFoundAssertion = require('./helpers/notFoundAssertion');
+const createUserJwt = require('./helpers/createUserJwt');
 
 const retroMock = require('../mocks/retro.mock');
 const listsMock = require('../mocks/list.mock');
 const cardsMock = require('../mocks/card.mock');
 const usersMock = require('../mocks/user.mock');
+const templatesMock = require('../mocks/template.mock');
 
 chai.use(chaiHttp);
 
+let token = '';
+const userIndex = 1;
+
 describe('RetroController', function() {
+    before((done) => {
+        const jwt = createUserJwt(userIndex);
+        token = 'Barear ' + jwt;
+        done();
+    });
+
     describe('GET', function() {
         it('SHOULD return a retro object by id', function(done) {
             chai.request(server)
                 .get('/retros/1')
+                .set('authorization', token)
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
-                    expect(res.body).to.deep.equal(retroMock[0]);
+                    expect(res.body.id).to.equal(retroMock[0].id);
+                    expect(res.body.title).to.equal(retroMock[0].title);
+                    expect(res.body.context).to.equal(retroMock[0].context);
+                    expect(res.body.Facilitator.id).to.equal(retroMock[0].userId);
+                    expect(res.body.Facilitator.firstname).to.equal(usersMock[0].firstname);
                     done();
                 });
         });
 
         it('SHOULD NOT return a retro for a nonexistent retro id', function(done) {
             chai.request(server)
-                .get('/retros/5')
+                .get('/retros/33')
+                .set('authorization', token)
                 .then(notFoundAssertion)
                 .then(done);
         });
@@ -52,19 +70,24 @@ describe('RetroController', function() {
         });
 
         it('SHOULD return a array of list from a retro', function(done) {
+            const retroId = 1;
             chai.request(server)
-                .get('/retros/1/lists')
+                .get(`/retros/${retroId}/lists`)
+                .set('authorization', token)
                 .end((err, res) => {
                     expect(res.status).to.be.equal(200);
                     expect(res.body).to.have.lengthOf(2);
-                    expect(res.body).to.deep.equal(listsMock);
+                    expect(res.body[0].title).to.equal(listsMock[0].title);
+                    expect(res.body[1].position).to.equal(listsMock[1].position);
+                    expect(res.body[0].retroId).to.equal(retroId);
                     done();
                 });
         });
 
         it('SHOULD NOT return an array of list for a nonexistent retro', function(done) {
             chai.request(server)
-                .get('/retros/5/lists')
+                .get('/retros/33/lists')
+                .set('authorization', token)
                 .then(notFoundAssertion)
                 .then(done);
         });
@@ -112,20 +135,33 @@ describe('RetroController', function() {
 
             chai.request(server)
                 .post('/retros/')
+                .set('authorization', token)
                 .send({
-                    'title': titleMock,
-                    'context': contextMock,
-                    'image': null
+                    title: titleMock,
+                    context: contextMock,
+                    templateId: templatesMock[0].id
                 })
-                .end((err, res) => {
-                    expect(res.status).to.be.equal(201);
-                    expect(res.body.title).to.be.equal(titleMock);
-                    expect(res.body.context).to.be.equal(contextMock);
-                    expect(res.body.id).to.not.be.undefined;
-                    expect(res.body.userId).to.not.be.undefined;
-                    expect(res.body.status).to.be.true;
-                    expect(res.header.location).to.not.be.undefined;
-                    done();
+                .end((err, resRetro) => {
+                    expect(resRetro.status).to.be.equal(201);
+                    
+                    expect(resRetro.body.title).to.be.equal(titleMock);
+                    expect(resRetro.body.context).to.be.equal(contextMock);
+                    expect(resRetro.body.id).to.not.be.undefined;
+                    expect(resRetro.body.status).to.be.true;
+                    expect(resRetro.body.state).to.be.equal(1);
+                    expect(resRetro.body.image).to.be.equal(templatesMock[0].image);
+
+                    expect(resRetro.body.userId).to.be.equal(usersMock[userIndex].id);
+                    
+                    expect(resRetro.header.location).to.contain(`${global.gConfig.apiUrl}retro/${resRetro.body.id}`);
+
+                    chai.request(server)
+                        .get(`/retros/${resRetro.body.id}/lists`)
+                        .set('authorization', token)
+                        .end((err, resLists) => {
+                            expect(resLists.body).lengthOf(JSON.parse(templatesMock[0].structure).length);
+                            done();
+                        });
                 });
         });
 

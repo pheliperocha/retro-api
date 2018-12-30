@@ -13,7 +13,8 @@ const Users = Models.Users;
 
 exports.get = function(req, res, next) {
     Retros.findByPk(req.params.id, { include: [{ model: Users, as: 'Facilitator' }] }).then(obj => {
-        return res.status(200).send(obj);
+        if (obj) return res.status(200).send(obj);
+        else return next(createError(404));
     }).catch(err => next(createError(err)));
 };
 
@@ -25,7 +26,8 @@ exports.getByPin = function(req, res, next) {
 
 exports.getLists = function(req, res, next) {
     Retros.findByPk(req.params.id, { include: [{ model: Lists }] }).then(obj => {
-        return res.status(200).send(obj.Lists);
+        if (obj) return res.status(200).send(obj.Lists);
+        else return next(createError(404));
     }).catch(err => next(createError(err)));
 };
 
@@ -78,7 +80,7 @@ exports.create = function (req, res, next) {
             });
 
         }).then(resT => {
-            return res.status(200).send(resT);
+            return res.status(201).send(resT);
         }).catch(err => next(createError(err)));
 
     }).catch(err => next(createError(err)));
